@@ -10,7 +10,7 @@
 - Triggers for automatic updates
 - Sample data (25 users, 43 posts, 40+ comments, 25 tags, 40+ reviews)
 
-### Java Foundation (60%)
+ ### Java Foundation (60%)
 - Maven POM with all dependencies
 - Model classes (User, Post, Comment, Tag, Review)
 - Database configuration with HikariCP
