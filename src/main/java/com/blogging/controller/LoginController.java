@@ -12,9 +12,9 @@ import org.slf4j.LoggerFactory;
 
 import java.io.IOException;
 
-/**
- * Controller for the login page.
- */
+
+ // Controller for the login page.
+ 
 public class LoginController {
     private static final Logger logger = LoggerFactory.getLogger(LoginController.class);
 
