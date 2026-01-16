@@ -4,7 +4,7 @@ A comprehensive JavaFX blogging platform with PostgreSQL database integration, d
 
 ##  Project Overview
 
-This project implements a complete blogging platform database layer with:
+ This project implements a complete blogging platform database layer with:
 - **Normalized PostgreSQL schema** (3NF) with 6 tables
 - **JavaFX application** with layered architecture (DAO → Service → Controller)
 - **Performance optimization** through indexing, caching, and query optimization
