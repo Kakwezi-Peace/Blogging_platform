@@ -4,7 +4,7 @@
 
 The Smart Blogging Platform database is designed using PostgreSQL with a focus on normalization, performance, and data integrity. The schema supports core blogging functionality including user management, post creation, commenting, tagging, and reviews.
 
-## Conceptual Model
+ ## Conceptual Model
 
 ### Entity-Relationship Diagram
 
