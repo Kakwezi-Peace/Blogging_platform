@@ -1,3 +1,4 @@
+
 package com.blogging.controller;
 
 import com.blogging.service.UserService;
@@ -12,9 +13,9 @@ import org.slf4j.LoggerFactory;
 
 import java.io.IOException;
 
-/**
+
  * Controller for the signup page.
- */
+ 
 public class SignupController {
     private static final Logger logger = LoggerFactory.getLogger(SignupController.class);
 
