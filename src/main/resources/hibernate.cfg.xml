@@ -5,7 +5,7 @@
 
 <hibernate-configuration>
     <session-factory>
-        <!-- PostgreSQL Database connection settings -->
+         <!-- PostgreSQL Database connection settings -->
         <property name="hibernate.connection.driver_class">org.postgresql.Driver</property>
         <property name="hibernate.connection.url">jdbc:postgresql://localhost:5432/blogging_platform</property>
         <property name="hibernate.connection.username">postgres</property>
