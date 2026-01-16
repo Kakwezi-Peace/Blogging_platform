@@ -7,7 +7,7 @@
 <BorderPane fx:id="mainBorderPane" xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml"
             fx:controller="com.blogging.controller.MainController" prefHeight="800.0" prefWidth="1200.0">
     
-    <!-- Top Menu Bar -->
+<!-- Top Menu Bar -->
     <top>
         <VBox>
             <MenuBar>
