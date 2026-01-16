@@ -22,9 +22,9 @@ import java.sql.SQLException;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
 
-/**
- * Controller for post list view.
- */
+
+ //Controller for post list view.
+ 
 public class PostListController {
     private static final Logger logger = LoggerFactory.getLogger(PostListController.class);
 
