@@ -5,7 +5,7 @@
 ### 1. Database Setup
 
 ```bash
-# Start PostgreSQL (if not running)
+ # Start PostgreSQL (if not running)
 # Then create the database and load data
 
 psql -U postgres -f database/schema.sql
