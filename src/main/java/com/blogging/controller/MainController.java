@@ -23,10 +23,10 @@ import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 
-/**
- * Main controller for the blogging platform.
- * Manages navigation and overall application state.
- */
+
+ // Main controller for the blogging platform.
+ //Manages navigation and overall application state.
+ 
 public class MainController {
     private static final Logger logger = LoggerFactory.getLogger(MainController.class);
 
