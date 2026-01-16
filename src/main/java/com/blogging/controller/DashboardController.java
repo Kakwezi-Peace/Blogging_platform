@@ -11,9 +11,9 @@ import org.slf4j.LoggerFactory;
 import java.sql.SQLException;
 import java.util.Map;
 
-/**
- * Controller for dashboard view.
- */
+
+ // Controller for dashboard view.
+ 
 public class DashboardController {
     private static final Logger logger = LoggerFactory.getLogger(DashboardController.class);
 
