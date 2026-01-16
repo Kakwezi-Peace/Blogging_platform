@@ -112,7 +112,7 @@ public class PostDetailController {
         }
     }        
 
-    private void loadComments() {
+    private void loadComments() { 
         if (currentPost == null) return;
         
         try {
