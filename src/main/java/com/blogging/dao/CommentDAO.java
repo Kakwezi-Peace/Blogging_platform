@@ -86,9 +86,9 @@ public class CommentDAO {
         return comments;
     }
 
-    /**
-     * Find all comments by a specific user.
-     */
+
+     // Find all comments by a specific user.
+
     public List<Comment> findByUser(int userId) throws SQLException {
         String sql = "SELECT c.*, u.username, p.title AS post_title " +
                     "FROM comments c " +
@@ -113,9 +113,9 @@ public class CommentDAO {
         return comments;
     }
 
-    /**
-     * Update an existing comment.
-     */
+
+     // Update an existing comment.
+
     public boolean update(Comment comment) throws SQLException {
         String sql = "UPDATE comments SET content = ? WHERE comment_id = ?";
         
@@ -131,9 +131,9 @@ public class CommentDAO {
         }
     }
 
-    /**
-     * Delete a comment by ID.
-     */
+
+     // Delete a comment by ID.
+
     public boolean delete(int commentId) throws SQLException {
         String sql = "DELETE FROM comments WHERE comment_id = ?";
         
@@ -148,9 +148,9 @@ public class CommentDAO {
         }
     }
 
-    /**
-     * Get comment count for a post.
-     */
+
+     // Get comment count for a post.
+
     public int getCommentCountByPost(int postId) throws SQLException {
         String sql = "SELECT COUNT(*) FROM comments WHERE post_id = ?";
         
@@ -168,9 +168,9 @@ public class CommentDAO {
         return 0;
     }
 
-    /**
-     * Like a comment.
-     */
+
+     // Like a comment.
+
     public boolean likeComment(int userId, int commentId) throws SQLException {
         String sql = "INSERT INTO comment_likes (user_id, comment_id) VALUES (?, ?) ON CONFLICT DO NOTHING";
         
@@ -184,9 +184,9 @@ public class CommentDAO {
         }
     }
 
-    /**
-     * Unlike a comment.
-     */
+
+     // Unlike a comment.
+
     public boolean unlikeComment(int userId, int commentId) throws SQLException {
         String sql = "DELETE FROM comment_likes WHERE user_id = ? AND comment_id = ?";
         
@@ -200,9 +200,9 @@ public class CommentDAO {
         }
     }
 
-    /**
-     * Check if user has liked a comment.
-     */
+
+     // Check if user has liked a comment.
+
     public boolean hasUserLiked(int userId, int commentId) throws SQLException {
         String sql = "SELECT 1 FROM comment_likes WHERE user_id = ? AND comment_id = ?";
         
@@ -218,9 +218,9 @@ public class CommentDAO {
         }
     }
 
-    /**
-     * Map ResultSet to Comment object.
-     */
+
+     //  Map ResultSet to Comment object.
+
     private Comment mapResultSetToComment(ResultSet rs) throws SQLException {
         Comment comment = new Comment();
         comment.setCommentId(rs.getInt("comment_id"));

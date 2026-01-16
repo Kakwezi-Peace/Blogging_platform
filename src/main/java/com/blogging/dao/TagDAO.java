@@ -9,16 +9,16 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * Data Access Object for Tag entity.
- * Handles all database operations for tags and post-tag associations.
- */
+
+ // Data Access Object for Tag entity.
+ //  Handles all database operations for tags and post-tag associations.
+
 public class TagDAO {
     private static final Logger logger = LoggerFactory.getLogger(TagDAO.class);
 
-    /**
-     * Create a new tag.
-     */
+
+     //  Create a new tag.
+
     public Tag create(Tag tag) throws SQLException {
         String sql = "INSERT INTO tags (tag_name) VALUES (?) RETURNING tag_id";
         
@@ -38,9 +38,9 @@ public class TagDAO {
         }
     }
 
-    /**
-     * Find a tag by ID.
-     */
+
+     // Find a tag by ID.
+
     public Tag findById(int tagId) throws SQLException {
         String sql = "SELECT * FROM tags WHERE tag_id = ?";
         
@@ -58,9 +58,9 @@ public class TagDAO {
         return null;
     }
 
-    /**
-     * Find a tag by name.
-     */
+
+     // Find a tag by name.
+
     public Tag findByName(String tagName) throws SQLException {
         String sql = "SELECT * FROM tags WHERE tag_name = ?";
         
@@ -78,9 +78,9 @@ public class TagDAO {
         return null;
     }
 
-    /**
-     * Find all tags.
-     */
+
+     // Find all tags.
+
     public List<Tag> findAll() throws SQLException {
         String sql = "SELECT * FROM tags ORDER BY tag_name";
         List<Tag> tags = new ArrayList<>();
@@ -96,9 +96,9 @@ public class TagDAO {
         return tags;
     }
 
-    /**
-     * Find all tags for a specific post.
-     */
+
+     //  Find all tags for a specific post.
+
     public List<Tag> findTagsByPost(int postId) throws SQLException {
         String sql = "SELECT t.* FROM tags t " +
                     "JOIN post_tags pt ON t.tag_id = pt.tag_id " +
@@ -121,9 +121,9 @@ public class TagDAO {
         return tags;
     }
 
-    /**
-     * Add a tag to a post.
-     */
+
+     // Add a tag to a post.
+
     public boolean addTagToPost(int postId, int tagId) throws SQLException {
         String sql = "INSERT INTO post_tags (post_id, tag_id) VALUES (?, ?) ON CONFLICT DO NOTHING";
         
@@ -139,9 +139,9 @@ public class TagDAO {
         }
     }
 
-    /**
-     * Remove a tag from a post.
-     */
+
+      // Remove a tag from a post.
+
     public boolean removeTagFromPost(int postId, int tagId) throws SQLException {
         String sql = "DELETE FROM post_tags WHERE post_id = ? AND tag_id = ?";
         
@@ -157,9 +157,9 @@ public class TagDAO {
         }
     }
 
-    /**
-     * Delete a tag (and all its associations).
-     */
+
+     //  Delete a tag (and all its associations).
+
     public boolean delete(int tagId) throws SQLException {
         String sql = "DELETE FROM tags WHERE tag_id = ?";
         
@@ -174,9 +174,9 @@ public class TagDAO {
         }
     }
 
-    /**
-     * Get popular tags with post counts.
-     */
+
+     // Get popular tags with post counts.
+
     public List<Tag> getPopularTags(int limit) throws SQLException {
         String sql = "SELECT t.*, COUNT(pt.post_id) as post_count " +
                     "FROM tags t " +
@@ -201,9 +201,9 @@ public class TagDAO {
         return tags;
     }
 
-    /**
-     * Map ResultSet to Tag object.
-     */
+
+     // Map ResultSet to Tag object.
+
     private Tag mapResultSetToTag(ResultSet rs) throws SQLException {
         Tag tag = new Tag();
         tag.setTagId(rs.getInt("tag_id"));

@@ -4,13 +4,13 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.util.Properties;
 
-/**
- * Database configuration management class.
- * Loads database connection properties from configuration file.
- */
+
+ //Database configuration management class.
+ //Loads database connection properties from configuration file.
+
 public class DatabaseConfig {
     private static final String CONFIG_FILE = "database.properties";
-    private static Properties properties;
+    private static final Properties properties;
 
     static {
         properties = new Properties();

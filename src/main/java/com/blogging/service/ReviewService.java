@@ -8,10 +8,10 @@ import org.slf4j.LoggerFactory;
 import java.sql.SQLException;
 import java.util.List;
 
-/**
- * Service layer for Review management.
- * Implements validation and rating calculations.
- */
+
+ // Service layer for Review management.
+ // Implements validation and rating calculations.
+
 public class ReviewService {
     private static final Logger logger = LoggerFactory.getLogger(ReviewService.class);
     private final ReviewDAO reviewDAO;
@@ -20,9 +20,9 @@ public class ReviewService {
         this.reviewDAO = new ReviewDAO();
     }
 
-    /**
-     * Create a new review with validation.
-     */
+
+     // Create a new review with validation.
+
     public Review createReview(Review review) throws SQLException {
         validateRating(review.getRating());
         
@@ -37,30 +37,30 @@ public class ReviewService {
         return createdReview;
     }
 
-    /**
-     * Get review by ID.
-     */
+
+     // Get review by ID.
+
     public Review getReviewById(int reviewId) throws SQLException {
         return reviewDAO.findById(reviewId);
     }
 
-    /**
-     * Get all reviews for a post.
-     */
+
+     // Get all reviews for a post.
+
     public List<Review> getReviewsByPost(int postId) throws SQLException {
         return reviewDAO.findByPost(postId);
     }
 
-    /**
-     * Get all reviews by a user.
-     */
+
+     // Get all reviews by a user.
+
     public List<Review> getReviewsByUser(int userId) throws SQLException {
         return reviewDAO.findByUser(userId);
     }
 
-    /**
-     * Update review.
-     */
+
+     // Update review.
+
     public void addReview(int postId, int userId, int rating, String comment) throws SQLException {
         Review review = new Review();
         review.setPostId(postId);
@@ -83,9 +83,9 @@ public class ReviewService {
         return reviewDAO.hasUserReviewedPost(userId, postId);
     }
 
-    /**
-     * Get rating statistics for a post.
-     */
+
+     // Get rating statistics for a post.
+
     public RatingStats getRatingStats(int postId) throws SQLException {
         List<Review> reviews = reviewDAO.findByPost(postId);
         
@@ -110,18 +110,18 @@ public class ReviewService {
         );
     }
 
-    /**
-     * Validate rating value.
-     */
+
+     // Validate rating value.
+
     private void validateRating(int rating) {
         if (rating < 1 || rating > 5) {
             throw new IllegalArgumentException("Rating must be between 1 and 5");
         }
     }
 
-    /**
-     * Rating statistics class.
-     */
+
+     // Rating statistics class.
+
     public static class RatingStats {
         private final int totalReviews;
         private final double averageRating;

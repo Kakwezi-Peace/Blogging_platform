@@ -9,9 +9,7 @@ import javafx.stage.Stage;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-/**
- * Main JavaFX Application class for Smart Blogging Platform.
- */
+
 public class BloggingPlatformApp extends Application {
     private static final Logger logger = LoggerFactory.getLogger(BloggingPlatformApp.class);
     private static final String APP_TITLE = "Smart Blogging Platform";
@@ -111,7 +109,7 @@ public class BloggingPlatformApp extends Application {
 
         } catch (Exception e) {
             logger.error("Database migration failed: " + e.getMessage());
-            // Don't exit, might already exist or other issue, let app try to run
+
         }
     }
 

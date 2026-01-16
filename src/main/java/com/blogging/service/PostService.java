@@ -10,12 +10,7 @@ import org.slf4j.LoggerFactory;
 import java.sql.SQLException;
 import java.time.LocalDateTime;
 import java.util.*;
-import java.util.stream.Collectors;
 
-/**
- * Service layer for Post management.
- * Implements caching, sorting, and business logic.
- */
 public class PostService {
     private static final Logger logger = LoggerFactory.getLogger(PostService.class);
     private final PostDAO postDAO;
@@ -37,9 +32,6 @@ public class PostService {
         this.cacheTimestamps = new HashMap<>();
     }
 
-    /**
-     * Create a new post with tags.
-     */
     public Post createPost(Post post, List<String> tagNames) throws SQLException {
         // Create the post
         Post createdPost = postDAO.create(post);
@@ -59,9 +51,6 @@ public class PostService {
         return createdPost;
     }
 
-    /**
-     * Get post by ID with caching.
-     */
     public Post getPost(int postId) throws SQLException {
         // Check cache first
         if (isCacheValid(postId)) {
@@ -84,9 +73,9 @@ public class PostService {
         return post;
     }
 
-    /**
-     * Search posts by keyword.
-     */
+
+     //  Search posts by keyword.
+
     public List<Post> searchPosts(String keyword) throws SQLException {
         long startTime = System.currentTimeMillis();
         List<Post> results = postDAO.search(keyword);
@@ -97,9 +86,9 @@ public class PostService {
         return results;
     }
 
-    /**
-     * Get posts by tag.
-     */
+
+     //  Get posts by tag.
+
     public List<Post> getPostsByTag(String tagName) throws SQLException {
         Tag tag = tagDAO.findByName(tagName);
         if (tag == null) {
@@ -108,17 +97,17 @@ public class PostService {
         return postDAO.findByTag(tag.getTagId());
     }
 
-    /**
-     * Get posts with pagination.
-     */
+
+     // Get posts with pagination.
+
     public List<Post> getPosts(int page, int pageSize) throws SQLException {
         int offset = (page - 1) * pageSize;
         return postDAO.findAll(pageSize, offset);
     }
 
-    /**
-     * Get sorted posts using QuickSort algorithm.
-     */
+
+     // Get sorted posts using QuickSort algorithm.
+
     public List<Post> getSortedPosts(int limit, String sortBy) throws SQLException {
         List<Post> posts = postDAO.findAll(limit, 0);
         
@@ -130,9 +119,9 @@ public class PostService {
         return posts;
     }
 
-    /**
-     * QuickSort implementation for posts.
-     */
+
+     // QuickSort implementation for posts.
+
     private void quickSort(List<Post> posts, int low, int high, String sortBy) {
         if (low < high) {
             int pi = partition(posts, low, high, sortBy);
@@ -172,29 +161,28 @@ public class PostService {
         }
     }
 
-    /**
-     * Get most viewed posts.
-     */
+
+     // Get most viewed posts.
+
     public List<Post> getMostViewedPosts(int limit) throws SQLException {
         return postDAO.getMostViewed(limit);
     }
 
-    /**
-     * Update post.
-     */
-    public boolean updatePost(Post post) throws SQLException {
+
+     // Update post.
+
+    public void updatePost(Post post) throws SQLException {
         boolean updated = postDAO.update(post);
         if (updated) {
             // Invalidate cache
             postCache.remove(post.getPostId());
             cacheTimestamps.remove(post.getPostId());
         }
-        return updated;
     }
 
-    /**
-     * Delete post.
-     */
+
+     //  Delete post.
+
     public boolean deletePost(int postId) throws SQLException {
         boolean deleted = postDAO.delete(postId);
         if (deleted) {
@@ -205,9 +193,9 @@ public class PostService {
         return deleted;
     }
 
-    /**
-     * Increment view count.
-     */
+
+     // Increment view count.
+
     public void incrementViewCount(int postId) throws SQLException {
         postDAO.incrementViewCount(postId);
         
@@ -221,25 +209,25 @@ public class PostService {
         }
     }
 
-    /**
-     * Get total post count.
-     */
+
+     // Get total post count.
+
     public int getTotalPostCount() throws SQLException {
         return postDAO.getTotalCount();
     }
 
-    /**
-     * Clear cache.
-     */
+
+     // Clear cache.
+
     public void clearCache() {
         postCache.clear();
         cacheTimestamps.clear();
         logger.info("Cache cleared");
     }
 
-    /**
-     * Get cache statistics.
-     */
+
+     // Get cache statistics.
+
     public Map<String, Object> getCacheStats() {
         Map<String, Object> stats = new HashMap<>();
         stats.put("cacheSize", postCache.size());
@@ -253,9 +241,9 @@ public class PostService {
         return stats;
     }
 
-    /**
-     * Check if cached post is still valid.
-     */
+
+     // Check if cached post is still valid.
+
     private boolean isCacheValid(int postId) {
         if (!postCache.containsKey(postId)) {
             return false;

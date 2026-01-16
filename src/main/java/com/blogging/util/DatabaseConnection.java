@@ -9,13 +9,13 @@ import org.slf4j.LoggerFactory;
 import java.sql.Connection;
 import java.sql.SQLException;
 
-/**
- * Database connection manager using HikariCP connection pooling.
- * Implements singleton pattern for efficient connection management.
- */
+
+ // Database connection manager using HikariCP connection pooling.
+ // Implements singleton pattern for efficient connection management.
+
 public class DatabaseConnection {
     private static final Logger logger = LoggerFactory.getLogger(DatabaseConnection.class);
-    private static HikariDataSource dataSource;
+    private static final HikariDataSource dataSource;
 
     static {
         try {
@@ -44,18 +44,18 @@ public class DatabaseConnection {
         }
     }
 
-    /**
-     * Get a connection from the pool.
-     * @return Database connection
-     * @throws SQLException if connection cannot be obtained
-     */
+
+     //Get a connection from the pool.
+     //@return Database connection
+     // @throws SQLException if connection cannot be obtained
+
     public static Connection getConnection() throws SQLException {
         return dataSource.getConnection();
     }
 
-    /**
-     * Close the data source and release all connections.
-     */
+
+     // Close the data source and release all connections.
+
     public static void close() {
         if (dataSource != null && !dataSource.isClosed()) {
             dataSource.close();
@@ -63,10 +63,10 @@ public class DatabaseConnection {
         }
     }
 
-    /**
-     * Test the database connection.
-     * @return true if connection is successful, false otherwise
-     */
+
+     // Test the database connection.
+     // @return true if connection is successful, false otherwise
+
     public static boolean testConnection() {
         try (Connection conn = getConnection()) {
             return conn != null && !conn.isClosed();

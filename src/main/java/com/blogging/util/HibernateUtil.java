@@ -5,13 +5,13 @@ import org.hibernate.cfg.Configuration;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-/**
- * Hibernate utility class for managing SessionFactory.
- * Automatically creates database tables based on JPA entity annotations.
- */
+
+ // Hibernate utility class for managing SessionFactory.
+ // Automatically creates database tables based on JPA entity annotations.
+
 public class HibernateUtil {
     private static final Logger logger = LoggerFactory.getLogger(HibernateUtil.class);
-    private static SessionFactory sessionFactory;
+    private static final SessionFactory sessionFactory;
 
     static {
         try {
@@ -31,8 +31,7 @@ public class HibernateUtil {
         }
     }
 
-    public static SessionFactory getSessionFactory() {
-        return sessionFactory;
+    public static void getSessionFactory() {
     }
 
     public static void shutdown() {

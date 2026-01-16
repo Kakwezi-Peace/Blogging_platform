@@ -58,9 +58,9 @@ public class PostDAO {
         return null;
     }
 
-    /**
-     * Get posts by user (author).
-     */
+
+     // Get posts by user (author).
+
     public List<Post> findByUser(int userId) throws SQLException {
         String sql = "SELECT p.*, u.username as author_name " +
                     "FROM posts p " +
@@ -84,9 +84,9 @@ public class PostDAO {
         return posts;
     }
 
-    /**
-     * Search posts by keyword (title or properties).
-     */
+
+     // Search posts by keyword (title or properties).
+
     public List<Post> search(String keyword) throws SQLException {
         String sql = "SELECT p.*, u.username as author_name " +
                     "FROM posts p " +
@@ -112,9 +112,9 @@ public class PostDAO {
         return posts;
     }
 
-    /**
-     * Get posts by tag.
-     */
+
+     // Get posts by tag.
+
     public List<Post> findByTag(int tagId) throws SQLException {
         String sql = "SELECT p.*, u.username as author_name " +
                     "FROM posts p " +
@@ -139,9 +139,9 @@ public class PostDAO {
         return posts;
     }
 
-    /**
-     * Get all posts with pagination.
-     */
+
+     // Get all posts with pagination.
+
     public List<Post> findAll(int limit, int offset) throws SQLException {
         String sql = "SELECT p.*, u.username as author_name " +
                     "FROM posts p " +
@@ -166,9 +166,9 @@ public class PostDAO {
         return posts;
     }
 
-    /**
-     * Update an existing post.
-     */
+
+     // Update an existing post.
+
     public boolean update(Post post) throws SQLException {
         String sql = "UPDATE posts SET title = ?, content = ?, updated_at = CURRENT_TIMESTAMP WHERE post_id = ?";
         
@@ -185,12 +185,11 @@ public class PostDAO {
         }
     }
 
-    /**
-     * Delete a post by ID.
-     */
-    /**
-     * Delete a post by ID.
-     */
+
+
+
+      // Delete a post by ID.
+
     public boolean delete(int postId) throws SQLException {
         Connection conn = null;
         try {
@@ -203,13 +202,7 @@ public class PostDAO {
                 stmt.executeUpdate();
             }
 
-            // 2. Delete from comments (and their likes if any, though likely handled by DB or need another step)
-            // Note: If comment_likes exists, we might need to delete them too if strict constraint exists,
-            // but assuming comments -> posts has FK.
-            // Let's rely on standard constraints or delete likes first if needed. 
-            // The user error was about post_tags. Let's start with tags.
-            // Actually, we should check if comments need deletion too.
-            // Safe bet: Delete comments for this post.
+
             try (PreparedStatement stmt = conn.prepareStatement("DELETE FROM comments WHERE post_id = ?")) {
                 stmt.setInt(1, postId);
                 stmt.executeUpdate();
@@ -247,9 +240,9 @@ public class PostDAO {
         }
     }
 
-    /**
-     * Increment view count for a post.
-     */
+
+     // Increment view count for a post.
+
     public void incrementViewCount(int postId) throws SQLException {
         String sql = "UPDATE posts SET view_count = view_count + 1 WHERE post_id = ?";
         
@@ -261,9 +254,9 @@ public class PostDAO {
         }
     }
 
-    /**
-     * Get total count of posts.
-     */
+
+     // Get total count of posts.
+
     public int getTotalCount() throws SQLException {
         String sql = "SELECT COUNT(*) FROM posts";
         
@@ -278,9 +271,9 @@ public class PostDAO {
         return 0;
     }
 
-    /**
-     * Get most viewed posts.
-     */
+
+     // Get most viewed posts.
+
     public List<Post> getMostViewed(int limit) throws SQLException {
         String sql = "SELECT p.*, u.username AS author_name " +
                     "FROM posts p " +
@@ -304,9 +297,9 @@ public class PostDAO {
         return posts;
     }
 
-    /**
-     * Map ResultSet to Post object.
-     */
+
+     // Map ResultSet to Post object.
+
     private Post mapResultSetToPost(ResultSet rs) throws SQLException {
         Post post = new Post();
         post.setPostId(rs.getInt("post_id"));

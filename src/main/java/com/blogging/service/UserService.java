@@ -9,10 +9,6 @@ import java.sql.SQLException;
 import java.util.List;
 import java.util.regex.Pattern;
 
-/**
- * Service layer for User management.
- * Implements validation and authentication logic.
- */
 public class UserService {
     private static final Logger logger = LoggerFactory.getLogger(UserService.class);
     private final UserDAO userDAO;
@@ -26,9 +22,6 @@ public class UserService {
         this.userDAO = new UserDAO();
     }
 
-    /**
-     * Register a new user.
-     */
     public User registerUser(String username, String email, String password) throws SQLException {
         // Validate input
         validateUsername(username);
@@ -56,9 +49,6 @@ public class UserService {
         return createdUser;
     }
 
-    /**
-     * Authenticate user (simplified).
-     */
     public void login(String username, String password) throws SQLException, IllegalArgumentException {
         User user = userDAO.findByUsername(username);
         
@@ -97,9 +87,9 @@ public class UserService {
         }
     }
 
-    /**
-     * Logout current user.
-     */
+
+    // Logout current user.
+
     public void logout() {
         if (currentUser != null) {
             logger.info("User logged out: {}", currentUser.getUsername());
@@ -107,30 +97,30 @@ public class UserService {
         }
     }
 
-    /**
-     * Get current logged-in user.
-     */
+
+     //  Get current logged-in user.
+
     public User getCurrentUser() {
         return currentUser;
     }
 
-    /**
-     * Check if user is logged in.
-     */
+
+      // Check if user is logged in.
+
     public boolean isLoggedIn() {
         return currentUser != null;
     }
 
-    /**
-     * Get user by ID.
-     */
+
+     // Get user by ID.
+
     public User getUserById(int userId) throws SQLException {
         return userDAO.findById(userId);
     }
 
-    /**
-     * Validate username.
-     */
+
+     //  Validate username.
+
     private void validateUsername(String username) {
         if (username == null || username.trim().isEmpty()) {
             throw new IllegalArgumentException("Username cannot be empty");
@@ -143,9 +133,9 @@ public class UserService {
         }
     }
 
-    /**
-     * Validate email.
-     */
+
+     //  Validate email.
+
     private void validateEmail(String email) {
         if (email == null || email.trim().isEmpty()) {
             throw new IllegalArgumentException("Email cannot be empty");
@@ -155,9 +145,9 @@ public class UserService {
         }
     }
 
-    /**
-     * Validate password.
-     */
+
+     // Validate password.
+
     private void validatePassword(String password) {
         if (password == null || password.isEmpty()) {
             throw new IllegalArgumentException("Password cannot be empty");
@@ -167,9 +157,9 @@ public class UserService {
         }
     }
 
-    /**
-     * Hash password (simplified - use BCrypt in production).
-     */
+
+     // Hash password (simplified - use BCrypt in production).
+
     private String hashPassword(String password) {
         // This is a simplified hash - in production, use BCrypt or similar
         return "$2a$10$" + Integer.toHexString(password.hashCode());

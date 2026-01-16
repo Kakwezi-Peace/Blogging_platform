@@ -9,16 +9,16 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * Data Access Object for Review entity.
- * Handles all database operations for reviews and ratings.
- */
+
+ // Data Access Object for Review entity.
+ // Handles all database operations for reviews and ratings.
+
 public class ReviewDAO {
     private static final Logger logger = LoggerFactory.getLogger(ReviewDAO.class);
 
-    /**
-     * Create a new review.
-     */
+
+     // Create a new review.
+
     public Review create(Review review) throws SQLException {
         String sql = "INSERT INTO reviews (post_id, user_id, rating, review_text) " +
                     "VALUES (?, ?, ?, ?) RETURNING review_id, created_at";
@@ -43,9 +43,9 @@ public class ReviewDAO {
         }
     }
 
-    /**
-     * Find a review by ID.
-     */
+
+     // Find a review by ID.
+
     public Review findById(int reviewId) throws SQLException {
         String sql = "SELECT r.*, u.username, p.title AS post_title " +
                     "FROM reviews r " +
@@ -67,9 +67,9 @@ public class ReviewDAO {
         return null;
     }
 
-    /**
-     * Find all reviews for a specific post.
-     */
+
+     // Find all reviews for a specific post.
+
     public List<Review> findByPost(int postId) throws SQLException {
         String sql = "SELECT r.*, u.username, p.title AS post_title " +
                     "FROM reviews r " +
@@ -94,9 +94,9 @@ public class ReviewDAO {
         return reviews;
     }
 
-    /**
-     * Find all reviews by a specific user.
-     */
+
+     // Find all reviews by a specific user.
+
     public List<Review> findByUser(int userId) throws SQLException {
         String sql = "SELECT r.*, u.username, p.title AS post_title " +
                     "FROM reviews r " +
@@ -121,9 +121,9 @@ public class ReviewDAO {
         return reviews;
     }
 
-    /**
-     * Update an existing review.
-     */
+
+     // Update an existing review.
+
     public boolean update(Review review) throws SQLException {
         String sql = "UPDATE reviews SET rating = ?, review_text = ? WHERE review_id = ?";
         
@@ -140,9 +140,9 @@ public class ReviewDAO {
         }
     }
 
-    /**
-     * Delete a review by ID.
-     */
+
+     // Delete a review by ID.
+
     public boolean delete(int reviewId) throws SQLException {
         String sql = "DELETE FROM reviews WHERE review_id = ?";
         
@@ -157,9 +157,9 @@ public class ReviewDAO {
         }
     }
 
-    /**
-     * Get average rating for a post.
-     */
+
+     // Get average rating for a post.
+
     public double getAverageRating(int postId) throws SQLException {
         String sql = "SELECT COALESCE(AVG(rating), 0) as avg_rating FROM reviews WHERE post_id = ?";
         
@@ -177,9 +177,9 @@ public class ReviewDAO {
         return 0.0;
     }
 
-    /**
-     * Get review count for a post.
-     */
+
+     //  Get review count for a post.
+
     public int getReviewCountByPost(int postId) throws SQLException {
         String sql = "SELECT COUNT(*) FROM reviews WHERE post_id = ?";
         
@@ -197,9 +197,9 @@ public class ReviewDAO {
         return 0;
     }
 
-    /**
-     * Check if user has already reviewed a post.
-     */
+
+     //  Check if user has already reviewed a post.
+
     public boolean hasUserReviewedPost(int userId, int postId) throws SQLException {
         String sql = "SELECT COUNT(*) FROM reviews WHERE user_id = ? AND post_id = ?";
         
@@ -218,9 +218,9 @@ public class ReviewDAO {
         return false;
     }
 
-    /**
-     * Map ResultSet to Review object.
-     */
+
+     // Map ResultSet to Review object.
+
     private Review mapResultSetToReview(ResultSet rs) throws SQLException {
         Review review = new Review();
         review.setReviewId(rs.getInt("review_id"));

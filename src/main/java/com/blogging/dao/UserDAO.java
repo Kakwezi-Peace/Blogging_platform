@@ -54,9 +54,9 @@ public class UserDAO {
         return null;
     }
 
-    /**
-     * Find a user by username.
-     */
+
+     // Find a user by username.
+
     public User findByUsername(String username) throws SQLException {
         String sql = "SELECT * FROM users WHERE LOWER(username) = LOWER(?)";
         
@@ -74,9 +74,9 @@ public class UserDAO {
         return null;
     }
 
-    /**
-     * Find a user by email.
-     */
+
+     // Find a user by email.
+
     public User findByEmail(String email) throws SQLException {
         String sql = "SELECT * FROM users WHERE email = ?";
         
@@ -94,9 +94,9 @@ public class UserDAO {
         return null;
     }
 
-    /**
-     * Find all users.
-     */
+
+     // Find all users.
+
     public List<User> findAll() throws SQLException {
         String sql = "SELECT * FROM users ORDER BY created_at DESC";
         List<User> users = new ArrayList<>();
@@ -112,9 +112,9 @@ public class UserDAO {
         return users;
     }
 
-    /**
-     * Update an existing user.
-     */
+
+     // Update an existing user.
+
     public boolean update(User user) throws SQLException {
         String sql = "UPDATE users SET username = ?, email = ?, password_hash = ?, role = ? WHERE user_id = ?";
         
@@ -133,9 +133,9 @@ public class UserDAO {
         }
     }
 
-    /**
-     * Delete a user by ID.
-     */
+
+     //  Delete a user by ID.
+
     public boolean delete(int userId) throws SQLException {
         String sql = "DELETE FROM users WHERE user_id = ?";
         
@@ -150,9 +150,9 @@ public class UserDAO {
         }
     }
 
-    /**
-     * Check if username exists.
-     */
+
+     //  Check if username exists.
+
     public boolean usernameExists(String username) throws SQLException {
         String sql = "SELECT COUNT(*) FROM users WHERE LOWER(username) = LOWER(?)";
         
@@ -170,9 +170,9 @@ public class UserDAO {
         return false;
     }
 
-    /**
-     * Check if email exists.
-     */
+
+     // Check if email exists.
+
     public boolean emailExists(String email) throws SQLException {
         String sql = "SELECT COUNT(*) FROM users WHERE email = ?";
         
@@ -190,9 +190,9 @@ public class UserDAO {
         return false;
     }
 
-    /**
-     * Map ResultSet to User object.
-     */
+
+     // Map ResultSet to User object.
+
     private User mapResultSetToUser(ResultSet rs) throws SQLException {
         User user = new User();
         user.setUserId(rs.getInt("user_id"));
