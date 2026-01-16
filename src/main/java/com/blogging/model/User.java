@@ -1,3 +1,4 @@
+
 package com.blogging.model;
 
 import jakarta.persistence.*;
