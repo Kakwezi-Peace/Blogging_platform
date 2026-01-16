@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<BorderPane fx:id="mainBorderPane" xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml"
+            fx:controller="com.blogging.controller.MainController" prefHeight="800.0" prefWidth="1200.0">
+    
+    <!-- Top Menu Bar -->
+    <top>
+        <VBox>
+            <MenuBar>
+                <Menu text="File">
+                    <MenuItem text="Exit" onAction="#handleExit"/>
+                </Menu>
+                <Menu text="View">
+                    <MenuItem text="Dashboard" onAction="#handleDashboard"/>
+                    <MenuItem text="All Posts" onAction="#handleViewPosts"/>
+                    <MenuItem text="My Posts" onAction="#handleMyPosts"/>
+                </Menu>
+                <Menu text="Help">
+                    <MenuItem text="About" onAction="#handleAbout"/>
+                </Menu>
+            </MenuBar>
+            <padding>
+                <Insets top="5" right="5" bottom="5" left="5"/>
+            </padding>
+            <!-- Toolbar -->
+            <ToolBar>
+                <Label fx:id="welcomeLabel" text="Welcome, Guest" style="-fx-font-weight: bold;"/>
+                <Region HBox.hgrow="ALWAYS"/>
+                <Button fx:id="dashboardButton" text="Dashboard" onAction="#handleDashboard"/>
+                <Button fx:id="postsButton" text="All Posts" onAction="#handleViewPosts"/>
+                <Button fx:id="myPostsButton" text="My Posts" onAction="#handleMyPosts"/>
+                <Button fx:id="createPostButton" text="Create Post" onAction="#handleCreatePost" styleClass="primary-button"/>
+                <Separator orientation="VERTICAL"/>
+                <Button fx:id="cacheStatsButton" text="Cache Stats" onAction="#handleCacheStats"/>
+                <Button fx:id="manageUsersButton" text="Manage Users" onAction="#handleManageUsers" visible="false" managed="false"/>
+                <Button fx:id="loginButton" text="Login" onAction="#handleLogin" styleClass="primary-button"/>
+                <Button fx:id="logoutButton" text="Logout" onAction="#handleLogout"/>
+            </ToolBar>
+        </VBox>
+    </top>
+    
+    <!-- Center Content Area -->
+    <center>
+        <StackPane>
+            <Label text="Loading..." style="-fx-font-size: 24px; -fx-text-fill: #888;"/>
+        </StackPane>
+    </center>
+    
+    <!-- Bottom Status Bar -->
+    <bottom>
+        <HBox spacing="10" style="-fx-background-color: #f0f0f0;">
+            <padding>
+                <Insets top="5" right="5" bottom="5" left="5"/>
+            </padding>
+            <Label text="Smart Blogging Platform v1.0"/>
+            <Region HBox.hgrow="ALWAYS"/>
+            <Label text="Database: PostgreSQL"/>
+        </HBox>
+    </bottom>
+</BorderPane>

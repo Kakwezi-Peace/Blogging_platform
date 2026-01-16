@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<VBox xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml"
+      fx:controller="com.blogging.controller.DashboardController" spacing="10">
+    <padding>
+        <Insets top="10" right="10" bottom="10" left="10"/>
+    </padding>
+
+    <Label text="Dashboard" style="-fx-font-size: 28px; -fx-font-weight: bold;"/>
+    
+    <Label fx:id="welcomeMessageLabel" text="Welcome to Smart Blogging Platform!" 
+           style="-fx-font-size: 18px; -fx-text-fill: #555;"/>
+    
+    <Separator/>
+    
+    <!-- Statistics Grid -->
+    <GridPane hgap="20" vgap="15">
+        <!-- Total Posts -->
+        <VBox GridPane.columnIndex="0" GridPane.rowIndex="0" spacing="5" 
+              style="-fx-background-color: #e3f2fd; -fx-padding: 20; -fx-background-radius: 5;">
+            <Label text="Total Posts" style="-fx-font-size: 14px; -fx-text-fill: #666;"/>
+            <Label fx:id="totalPostsLabel" text="0" style="-fx-font-size: 32px; -fx-font-weight: bold; -fx-text-fill: #1976d2;"/>
+        </VBox>
+        
+        <!-- Total Users -->
+        <VBox GridPane.columnIndex="1" GridPane.rowIndex="0" spacing="5"
+              style="-fx-background-color: #f3e5f5; -fx-padding: 20; -fx-background-radius: 5;">
+            <Label text="Total Users" style="-fx-font-size: 14px; -fx-text-fill: #666;"/>
+            <Label fx:id="totalUsersLabel" text="0" style="-fx-font-size: 32px; -fx-font-weight: bold; -fx-text-fill: #7b1fa2;"/>
+        </VBox>
+        
+        <!-- Cache Hits -->
+        <VBox GridPane.columnIndex="0" GridPane.rowIndex="1" spacing="5"
+              style="-fx-background-color: #e8f5e9; -fx-padding: 20; -fx-background-radius: 5;">
+            <Label text="Cache Hits" style="-fx-font-size: 14px; -fx-text-fill: #666;"/>
+            <Label fx:id="cacheHitsLabel" text="0" style="-fx-font-size: 32px; -fx-font-weight: bold; -fx-text-fill: #388e3c;"/>
+        </VBox>
+        
+        <!-- Cache Misses -->
+        <VBox GridPane.columnIndex="1" GridPane.rowIndex="1" spacing="5"
+              style="-fx-background-color: #fff3e0; -fx-padding: 20; -fx-background-radius: 5;">
+            <Label text="Cache Misses" style="-fx-font-size: 14px; -fx-text-fill: #666;"/>
+            <Label fx:id="cacheMissesLabel" text="0" style="-fx-font-size: 32px; -fx-font-weight: bold; -fx-text-fill: #f57c00;"/>
+        </VBox>
+        
+        <!-- Hit Rate -->
+        <VBox GridPane.columnIndex="0" GridPane.rowIndex="2" GridPane.columnSpan="2" spacing="5"
+              style="-fx-background-color: #fce4ec; -fx-padding: 20; -fx-background-radius: 5;">
+            <Label text="Cache Hit Rate" style="-fx-font-size: 14px; -fx-text-fill: #666;"/>
+            <Label fx:id="hitRateLabel" text="0.00%" style="-fx-font-size: 32px; -fx-font-weight: bold; -fx-text-fill: #c2185b;"/>
+        </VBox>
+    </GridPane>
+    
+    <Separator/>
+    
+    <Label text="Performance optimization through caching and indexing is active." 
+           style="-fx-font-size: 12px; -fx-text-fill: #888;"/>
+</VBox>

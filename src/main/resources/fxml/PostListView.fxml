@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<VBox xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml"
+      fx:controller="com.blogging.controller.PostListController" spacing="5">
+    <padding>
+        <Insets top="5" right="5" bottom="5" left="5"/>
+    </padding>
+    
+    <Label text="Blog Posts" style="-fx-font-size: 24px; -fx-font-weight: bold;"/>
+    
+    <!-- Search and Sort Controls -->
+    <HBox spacing="10" alignment="CENTER_LEFT">
+        <TextField fx:id="searchField" promptText="Search posts..." prefWidth="300"/>
+        <Button text="Search" onAction="#handleSearch" styleClass="primary-button"/>
+        <Button text="Clear" onAction="#handleClearSearch"/>
+        <Region HBox.hgrow="ALWAYS"/>
+        <Label text="Sort by:"/>
+        <ComboBox fx:id="sortComboBox" prefWidth="120"/>
+        <Button text="Sort" onAction="#handleSort"/>
+        <Button text="Refresh" onAction="#handleRefresh"/>
+    </HBox>
+    
+    <!-- Post Table -->
+    <TableView fx:id="postTable" VBox.vgrow="ALWAYS">
+        <columns>
+            <TableColumn fx:id="idColumn" text="ID" prefWidth="50"/>
+            <TableColumn fx:id="titleColumn" text="Title" prefWidth="400"/>
+            <TableColumn fx:id="authorColumn" text="Author" prefWidth="150"/>
+            <TableColumn fx:id="viewsColumn" text="Views" prefWidth="80"/>
+            <TableColumn fx:id="dateColumn" text="Date" prefWidth="150"/>
+        </columns>
+        <columnResizePolicy>
+            <TableView fx:constant="CONSTRAINED_RESIZE_POLICY"/>
+        </columnResizePolicy>
+    </TableView>
+    
+    <!-- CRUD Controls & Pagination -->
+    <HBox spacing="10" alignment="CENTER_LEFT" styleClass="pagination-bar">
+        <padding>
+            <Insets top="5" right="10" bottom="5" left="10"/>
+        </padding>
+        <Button fx:id="createButton" text="Create Post" onAction="#handleCreate" styleClass="primary-button"/>
+        <Button fx:id="editButton" text="Update Post" onAction="#handleEdit" styleClass="button"/>
+        <Button fx:id="deleteButton" text="Delete Post" onAction="#handleDelete" styleClass="button"/>
+        
+        <Region HBox.hgrow="ALWAYS"/>
+        
+        <Button fx:id="prevPageButton" text="← Previous" onAction="#handlePreviousPage" styleClass="page-button"/>
+        <Label fx:id="pageLabel" text="Page 1 of 1" styleClass="page-label"/>
+        <Button fx:id="nextPageButton" text="Next →" onAction="#handleNextPage" styleClass="page-button"/>
+    </HBox>
+    
+    <!-- Status Bar -->
+    <HBox spacing="10" style="-fx-background-color: #f9f9f9;">
+        <padding>
+            <Insets top="5" right="5" bottom="5" left="5"/>
+        </padding>
+        <Label fx:id="statusLabel" text="Ready"/>
+    </HBox>
+</VBox>

@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<VBox xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml"
+      fx:controller="com.blogging.controller.PostFormController" spacing="10" 
+      prefWidth="500" prefHeight="400">
+    <padding>
+        <Insets top="10" right="10" bottom="10" left="10"/>
+    </padding>
+    
+    <Label text="Create New Post" style="-fx-font-size: 20px; -fx-font-weight: bold;"/>
+    
+    <Separator/>
+    
+    <!-- Title Field -->
+    <VBox spacing="5">
+        <Label text="Title:" style="-fx-font-weight: bold;"/>
+        <TextField fx:id="titleField" promptText="Enter post title (min 5 characters)"/>
+    </VBox>
+    
+    <!-- Content Area -->
+    <VBox spacing="5" VBox.vgrow="ALWAYS">
+        <Label text="Content:" style="-fx-font-weight: bold;"/>
+        <TextArea fx:id="contentArea" promptText="Enter post content (min 10 characters)" 
+                  wrapText="true" VBox.vgrow="ALWAYS"/>
+    </VBox>
+    
+    <!-- Tags Field -->
+    <VBox spacing="5">
+        <Label text="Tags (comma-separated):" style="-fx-font-weight: bold;"/>
+        <TextField fx:id="tagsField" promptText="e.g., java, tutorial, database"/>
+        <Label text="Tip: Separate tags with commas" style="-fx-font-size: 10px; -fx-text-fill: #888;"/>
+    </VBox>
+    
+    <!-- Buttons -->
+    <HBox spacing="10" alignment="CENTER_RIGHT">
+        <Button fx:id="cancelButton" text="Cancel" onAction="#handleCancel" prefWidth="100"/>
+        <Button fx:id="saveButton" text="Save Post" onAction="#handleSave" 
+                styleClass="primary-button" prefWidth="100"/>
+    </HBox>
+</VBox>

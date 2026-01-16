@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-configuration PUBLIC
+        "-//Hibernate/Hibernate Configuration DTD 3.0//EN"
+        "http://www.hibernate.org/dtd/hibernate-configuration-3.0.dtd">
+
+<hibernate-configuration>
+    <session-factory>
+        <!-- PostgreSQL Database connection settings -->
+        <property name="hibernate.connection.driver_class">org.postgresql.Driver</property>
+        <property name="hibernate.connection.url">jdbc:postgresql://localhost:5432/blogging_platform</property>
+        <property name="hibernate.connection.username">postgres</property>
+        <property name="hibernate.connection.password">Annet@25437</property>
+
+        <!-- PostgreSQL Dialect -->
+        <property name="hibernate.dialect">org.hibernate.dialect.PostgreSQLDialect</property>
+
+        <!-- Automatic table creation -->
+        <property name="hibernate.hbm2ddl.auto">update</property>
+
+        <!-- Show SQL in console -->
+        <property name="hibernate.show_sql">true</property>
+        <property name="hibernate.format_sql">true</property>
+
+        <!-- Connection pool settings -->
+        <property name="hibernate.hikari.connectionTimeout">30000</property>
+        <property name="hibernate.hikari.maximumPoolSize">10</property>
+        <property name="hibernate.hikari.minimumIdle">5</property>
+
+        <!-- Entity mappings -->
+        <mapping class="com.blogging.model.User"/>
+        <mapping class="com.blogging.model.Post"/>
+        <mapping class="com.blogging.model.Comment"/>
+        <mapping class="com.blogging.model.Tag"/>
+        <mapping class="com.blogging.model.Review"/>
+    </session-factory>
+</hibernate-configuration>
