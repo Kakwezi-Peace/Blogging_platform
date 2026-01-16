@@ -1,8 +1,7 @@
--- ============================================
+
 -- Smart Blogging Platform Database Schema
 -- Database: PostgreSQL
 -- Normalization: 3NF (Third Normal Form)
--- ============================================
 
 -- Drop existing database if exists and create new
 DROP DATABASE IF EXISTS blogging_platform;
@@ -11,10 +10,8 @@ CREATE DATABASE blogging_platform;
 -- Connect to the database
 \c blogging_platform;
 
--- ============================================
 -- Table: users
 -- Description: Stores user account information
--- ============================================
 CREATE TABLE users (
     user_id SERIAL PRIMARY KEY,
     username VARCHAR(50) NOT NULL UNIQUE,
@@ -32,10 +29,10 @@ CREATE INDEX idx_users_username ON users(username);
 -- Index on email for fast lookup
 CREATE INDEX idx_users_email ON users(email);
 
--- ============================================
+
 -- Table: posts
 -- Description: Stores blog post content
--- ============================================
+
 CREATE TABLE posts (
     post_id SERIAL PRIMARY KEY,
     user_id INTEGER NOT NULL,
@@ -66,10 +63,10 @@ CREATE INDEX idx_posts_view_count ON posts(view_count DESC);
 -- Full-text search index on title and content
 CREATE INDEX idx_posts_fulltext ON posts USING GIN(to_tsvector('english', title || ' ' || content));
 
--- ============================================
+
 -- Table: comments
 -- Description: Stores user comments on posts
--- ============================================
+
 CREATE TABLE comments (
     comment_id SERIAL PRIMARY KEY,
     post_id INTEGER NOT NULL,
@@ -92,10 +89,9 @@ CREATE INDEX idx_comments_user ON comments(user_id);
 -- Index on created_at for sorting comments by date
 CREATE INDEX idx_comments_created_at ON comments(created_at DESC);
 
--- ============================================
 -- Table: comment_likes
 -- Description: Stores likes on comments
--- ============================================
+
 CREATE TABLE comment_likes (
     user_id INTEGER NOT NULL,
     comment_id INTEGER NOT NULL,
@@ -110,10 +106,10 @@ CREATE TABLE comment_likes (
 -- Index on comment_id to count likes
 CREATE INDEX idx_comment_likes_comment ON comment_likes(comment_id);
 
--- ============================================
+
 -- Table: tags
 -- Description: Stores unique tags for categorization
--- ============================================
+
 CREATE TABLE tags (
     tag_id SERIAL PRIMARY KEY,
     tag_name VARCHAR(50) NOT NULL UNIQUE,
@@ -123,10 +119,10 @@ CREATE TABLE tags (
 -- Index on tag_name for fast lookup and uniqueness
 CREATE INDEX idx_tags_name ON tags(tag_name);
 
--- ============================================
+
 -- Table: post_tags
 -- Description: Junction table for many-to-many relationship between posts and tags
--- ============================================
+
 CREATE TABLE post_tags (
     post_id INTEGER NOT NULL,
     tag_id INTEGER NOT NULL,
@@ -143,10 +139,10 @@ CREATE INDEX idx_post_tags_tag ON post_tags(tag_id);
 -- Index on post_id for fast lookup of tags for a post
 CREATE INDEX idx_post_tags_post ON post_tags(post_id);
 
--- ============================================
+
 -- Table: reviews
 -- Description: Stores user reviews and ratings for posts
--- ============================================
+
 CREATE TABLE reviews (
     review_id SERIAL PRIMARY KEY,
     post_id INTEGER NOT NULL,
@@ -171,7 +167,6 @@ CREATE INDEX idx_reviews_user ON reviews(user_id);
 -- Index on rating for filtering by rating
 CREATE INDEX idx_reviews_rating ON reviews(rating);
 
--- ============================================
 -- Views for Common Queries
 -- ============================================
 
@@ -204,9 +199,7 @@ LEFT JOIN comments c ON p.post_id = c.post_id
 LEFT JOIN reviews r ON p.post_id = r.post_id
 GROUP BY p.post_id, p.title, p.view_count;
 
--- ============================================
 -- Functions and Triggers
--- ============================================
 
 -- Function to update the updated_at timestamp
 CREATE OR REPLACE FUNCTION update_updated_at_column()
@@ -223,9 +216,8 @@ BEFORE UPDATE ON posts
 FOR EACH ROW
 EXECUTE FUNCTION update_updated_at_column();
 
--- ============================================
 -- Summary of Database Objects
--- ============================================
+
 
 -- Display all tables
 SELECT 'Tables Created:' AS info;
