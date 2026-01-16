@@ -9,7 +9,7 @@
             fx:controller="com.blogging.controller.SignupController" 
             styleClass="signup-page">
     
-    <center>
+<center>
         <VBox alignment="CENTER" spacing="10" maxWidth="450" styleClass="signup-container">
             <padding>
                 <Insets top="20" right="20" bottom="20" left="20"/>
